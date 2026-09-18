@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Test / tooling caches
+.pytest_cache/
+.coverage
+htmlcov/
+
+# OS noise
+.DS_Store
+
+# Transient artifacts
+_*.json
+tmp/
