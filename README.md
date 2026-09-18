@@ -9,7 +9,7 @@ solves a 24-hour low-cost grid schedule with an OR-Tools MILP.
 ```
 POST /optimize-energy
    -> Pydantic request validation
-   -> InterpreterRouter (Groq -> Gemini -> deterministic rules)
+   -> InterpreterRouter (Gemini -> Groq -> deterministic rules)
    -> DirectiveValidator (guardrails, canonical structured_adjustment)
    -> DirectiveCompiler (effective solar / reserve / charge & discharge windows / grid caps)
    -> OR-Tools MILP (minimize grid cost under all constraints)
@@ -37,12 +37,13 @@ Check `GET http://localhost:8000/health`, interactive docs at `/docs`.
 Copy `.env.example` to `.env` and set:
 
 ```
-GROQ_API_KEY=...        # primary
-GEMINI_API_KEY=...      # fallback
+GEMINI_API_KEY=...        # primary (fast)
+GROQ_API_KEY=...      # fallback
 ```
 
-Values are read at process start. Without keys the service runs fully offline on
-the deterministic interpreter (still completes every valid scenario).
+Values are read from `.env` at process start (python-dotenv). Without keys the
+service runs fully offline on the deterministic interpreter (still completes
+every valid scenario).
 
 ## Validation
 

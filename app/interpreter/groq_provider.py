@@ -118,6 +118,7 @@ class GroqProvider(LLMProvider):
                 break
             data = resp.json()
         content = data["choices"][0]["message"]["content"]
+        logger.info("groq llm response: %s", content)
         parsed = json.loads(content)
         if not isinstance(parsed, dict) or "notes" not in parsed:
             raise LLMError("groq output missing notes array")

@@ -1,5 +1,9 @@
 import os
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 class Settings:
     HOURS_PER_DAY = 24
@@ -30,11 +34,11 @@ class Settings:
 
     @property
     def llm_enabled(self) -> bool:
-        return bool(self.GROQ_API_KEY)
+        return bool(self.GEMINI_API_KEY) or bool(self.GROQ_API_KEY)
 
     @property
-    def gemini_enabled(self) -> bool:
-        return bool(self.GEMINI_API_KEY)
+    def groq_enabled(self) -> bool:
+        return bool(self.GROQ_API_KEY)
 
 
 settings = Settings()

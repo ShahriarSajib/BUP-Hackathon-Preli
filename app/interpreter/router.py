@@ -38,9 +38,9 @@ class InterpreterRouter:
         self.fallback = fallback
         if self.llm_enabled:
             if self.primary is None and settings.llm_enabled:
-                self.primary = GroqProvider()
-            if self.fallback is None and settings.gemini_enabled:
-                self.fallback = GeminiProvider()
+                self.primary = GeminiProvider()
+            if self.fallback is None and settings.groq_enabled:
+                self.fallback = GroqProvider()
 
     def interpret(self, notes: List[str], battery_capacity: float) -> List[dict]:
         if self.llm_enabled:

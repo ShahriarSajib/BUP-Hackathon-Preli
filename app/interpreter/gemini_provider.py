@@ -54,6 +54,7 @@ class GeminiProvider(LLMProvider):
             text = data["candidates"][0]["content"]["parts"][0]["text"]
         except (KeyError, IndexError) as exc:
             raise LLMError("gemini output missing content") from exc
+        logger.info("gemini llm response: %s", text)
         parsed = json.loads(text)
         if not isinstance(parsed, dict) or "notes" not in parsed:
             raise LLMError("gemini output missing notes array")
